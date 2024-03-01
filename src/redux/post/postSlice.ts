@@ -2,11 +2,11 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { Post } from "../../types";
 
 interface PostState {
-  post: Post | null;
+  selectedPost: Post | null;
 }
 
 const initialState: PostState = {
-  post: null,
+  selectedPost: null,
 };
 
 const postSlice = createSlice({
@@ -14,7 +14,7 @@ const postSlice = createSlice({
   initialState,
   reducers: {
     selectPost: (state, action: PayloadAction<Post>) => {
-      state.post = action.payload;
+      state.selectedPost = action.payload;
     },
   },
 });
