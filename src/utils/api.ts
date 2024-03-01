@@ -1,16 +1,18 @@
 import axios from "axios";
 
-axios.defaults.baseURL = `${import.meta.env.VITE_API_URL}/api/chat`;
+axios.defaults.baseURL = `${import.meta.env.VITE_API_URL}`;
 axios.defaults.headers.post["Content-Type"] = "application/json";
 
 const http = async <T>(
   method: "GET" | "POST" | "PUT" | "DELETE",
-  data?: any
+  data?: any,
+  url?: string
 ): Promise<T> => {
   try {
     const response = await axios({
       method,
       data,
+      url,
     });
 
     return response.data;

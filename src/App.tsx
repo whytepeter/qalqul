@@ -1,10 +1,32 @@
-import ChatBox from "./components/ChatBox";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import NotFoundPage from "./components/NotFoundPage.tsx";
+import Layout from "@/components/Layout.tsx";
+import PostList from "@/components/Post/PostList.tsx";
+import PostDetails from "@/components/Post/PostDetails.tsx";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Layout />,
+    errorElement: <NotFoundPage />,
+
+    children: [
+      {
+        path: "post",
+        element: <PostList />,
+      },
+      {
+        path: "post/:postId",
+        element: <PostDetails />,
+      },
+    ],
+  },
+]);
 
 function App() {
   return (
     <>
-      <div className="text-primary-300">App</div>
-      <ChatBox />
+      <RouterProvider router={router} />
     </>
   );
 }
