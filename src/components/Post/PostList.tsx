@@ -12,9 +12,10 @@ export default function PostList() {
   const [totalPages, setTotalPages] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
 
-  const pageSize = 5;
+  const pageSize = 5; // Number of posts to fetch per page
 
   useEffect(() => {
+    // Fetch posts when the component mounts or currentPage changes
     const fetchPosts = async () => {
       setLoading(true);
       try {
@@ -24,10 +25,9 @@ export default function PostList() {
         };
         const res = await http("GET", undefined, params);
 
+        // Calculate total pages based on header count and update posts data
         setTotalPages(Math.ceil(res.headers["x-total-count"] / pageSize));
-        if (res.data) {
-          setPosts(res.data);
-        }
+        setPosts(res.data);
       } catch (error: any) {
         toast.error(error.message || "An error occurred.");
       } finally {
