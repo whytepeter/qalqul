@@ -1,11 +1,17 @@
-import { Link } from "react-router-dom";
-import { Posts } from "../types";
+import { Link, useNavigate } from "react-router-dom";
+import { Posts, Post } from "../types";
 
 type TableProps = {
   posts: Posts;
 };
 
 export default function Table({ posts }: TableProps) {
+  const navigate = useNavigate();
+  const viewPost = (post: Post) => {
+    console.log(post);
+    navigate(`${post.id}`);
+  };
+
   return (
     <>
       <div className="flex flex-col ">
@@ -28,12 +34,14 @@ export default function Table({ posts }: TableProps) {
               <div className="col-span-2 hidden md:block ">{post.email}</div>
               <div className="col-span-2 hidden md:block">{post.phone}</div>
               <div className="col-span-1 flex items-center justify-end">
-                <Link
-                  to={`${post.id}`}
-                  className="transition-all duration-300 px-4 py-2 bg-primary hover:bg-primary-300 text-white rounded-full"
+                <span
+                  onClick={() => {
+                    viewPost(post);
+                  }}
+                  className="cursor-pointer transition-all duration-300 px-4 py-2 bg-primary hover:bg-primary-300 text-white rounded-full"
                 >
                   View
-                </Link>
+                </span>
               </div>
             </div>
           ))}

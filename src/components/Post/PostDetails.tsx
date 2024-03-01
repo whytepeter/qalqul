@@ -21,7 +21,7 @@ export default function PostDetails() {
           </div>
         </>
       ) : (
-        <div>Ops no post available</div>
+        <div className="text-center text-sm">Ops, no post available</div>
       )}
     </div>
   );
