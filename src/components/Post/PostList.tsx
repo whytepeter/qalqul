@@ -4,17 +4,31 @@ import { Posts } from "../../types";
 import Loader from "../Loader";
 import http from "../../utils/api";
 import toast from "react-hot-toast";
+import Pagination from "../Pagination";
 
 export default function PostList() {
-  const [posts, setPosts] = useState<Posts>([]);
   const [loading, setLoading] = useState(false);
+  const [posts, setPosts] = useState<Posts>([]);
+  const [totalPages, setTotalPages] = useState(1); // Default to 1 page
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const pageSize = 5;
 
   useEffect(() => {
     const fetchPosts = async () => {
       setLoading(true);
       try {
-        const res = await http<Posts>("GET");
-        setPosts(res);
+        const params = {
+          _page: currentPage,
+          _limit: pageSize,
+        };
+        const res = await http<Posts>("GET", undefined, params);
+        console.log(res);
+
+        setTotalPages(Math.ceil(res.headers["x-total-count"] / pageSize));
+        if (res.data) {
+          setPosts(res.data);
+        }
       } catch (error: any) {
         toast.error(error.message || "An error occurred.");
       } finally {
@@ -23,7 +37,7 @@ export default function PostList() {
     };
 
     fetchPosts();
-  }, []);
+  }, [currentPage]);
 
   return (
     <>
@@ -34,6 +48,14 @@ export default function PostList() {
         </div>
 
         <Table posts={posts} />
+
+        {posts?.length && (
+          <Pagination
+            setCurrentPage={setCurrentPage}
+            currentPage={currentPage}
+            totalPages={totalPages}
+          />
+        )}
       </div>
     </>
   );

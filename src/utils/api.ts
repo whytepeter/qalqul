@@ -1,4 +1,7 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
+interface RequestParams {
+  [key: string]: any;
+}
 
 axios.defaults.baseURL = `${import.meta.env.VITE_API_URL}`;
 axios.defaults.headers.post["Content-Type"] = "application/json";
@@ -6,16 +9,16 @@ axios.defaults.headers.post["Content-Type"] = "application/json";
 const http = async <T>(
   method: "GET" | "POST" | "PUT" | "DELETE",
   data?: any,
-  url?: string
-): Promise<T> => {
+  params?: RequestParams
+): Promise<AxiosResponse> => {
   try {
     const response = await axios({
       method,
       data,
-      url,
+      params,
     });
 
-    return response.data;
+    return response;
   } catch (error: any) {
     if (error.request) {
       // Network error
