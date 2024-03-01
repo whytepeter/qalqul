@@ -27,7 +27,10 @@ export default function PostList() {
 
         // Calculate total pages based on header count and update posts data
         setTotalPages(Math.ceil(res.headers["x-total-count"] / pageSize));
-        setPosts(res.data);
+
+        if (Array.isArray(res.data)) {
+          setPosts(res.data);
+        }
       } catch (error: any) {
         toast.error(error.message || "An error occurred.");
       } finally {
@@ -47,11 +50,15 @@ export default function PostList() {
         </div>
         <Table posts={posts} />
 
-        <Pagination
-          setCurrentPage={setCurrentPage}
-          currentPage={currentPage}
-          totalPages={totalPages}
-        />
+        {posts?.length ? (
+          <Pagination
+            setCurrentPage={setCurrentPage}
+            currentPage={currentPage}
+            totalPages={totalPages}
+          />
+        ) : (
+          <></>
+        )}
       </div>
     </>
   );
