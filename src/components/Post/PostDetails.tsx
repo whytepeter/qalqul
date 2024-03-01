@@ -10,7 +10,11 @@ export default function PostDetails() {
     <div className="w-full max-w-3xl mx-auto bg-background p-4 md:p-6 rounded-3xl flex flex-col gap-5">
       <BackButton />
 
-      {post ? (
+      {!post && (
+        <div className="text-center text-sm">Ops, no post available</div>
+      )}
+
+      {post && (
         <>
           <h4 className="font-medium text-dark-900">{post.name}</h4>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -20,8 +24,6 @@ export default function PostDetails() {
             <DisplayCard title="website" value={post.website} />
           </div>
         </>
-      ) : (
-        <div className="text-center text-sm">Ops, no post available</div>
       )}
     </div>
   );

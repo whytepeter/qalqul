@@ -10,11 +10,10 @@ export default function PostList() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const fetchPost = async () => {
+    const fetchPosts = async () => {
       setLoading(true);
       try {
         const res = await http<Posts>("GET");
-        console.log(res);
         setPosts(res);
       } catch (error: any) {
         toast.error(error.message || "An error occurred.");
@@ -23,16 +22,14 @@ export default function PostList() {
       }
     };
 
-    fetchPost();
+    fetchPosts();
   }, []);
 
   return (
     <>
       <div className="flex flex-col gap-4">
         <div className="flex items-center justify-between">
-          <h4 className="font-medium text-dark-900">
-            All Post {posts?.length}
-          </h4>
+          <h4 className="font-medium text-dark-900">All Post</h4>
           {loading && <Loader />}
         </div>
 

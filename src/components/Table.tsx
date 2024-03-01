@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Posts, Post } from "../types";
 import { useDispatch } from "react-redux";
 import { selectPost } from "../redux/post/postSlice";
