@@ -9,7 +9,7 @@ import Pagination from "../Pagination";
 export default function PostList() {
   const [loading, setLoading] = useState(false);
   const [posts, setPosts] = useState<Posts>([]);
-  const [totalPages, setTotalPages] = useState(1); // Default to 1 page
+  const [totalPages, setTotalPages] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
 
   const pageSize = 5;
@@ -23,7 +23,6 @@ export default function PostList() {
           _limit: pageSize,
         };
         const res = await http<Posts>("GET", undefined, params);
-        console.log(res);
 
         setTotalPages(Math.ceil(res.headers["x-total-count"] / pageSize));
         if (res.data) {

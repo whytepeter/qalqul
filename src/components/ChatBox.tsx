@@ -8,8 +8,6 @@ export default function ChatBox() {
   const [open, setOpen] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");
 
-  // Welcome 👋, this is a message from the server using socket
-
   useEffect(() => {
     // Listen for 'onMessage' event from the server
     if (!socket) return;
@@ -36,13 +34,15 @@ export default function ChatBox() {
     >
       {open && (
         <div className="p-3 rounded-xl bg-[#F5F5F5] text-sm text-dark-10">
-          {message ? message : "Ops nothing here"}
+          {message ? message : "nothing yet"}
         </div>
       )}
 
       <div
         onClick={toggleChatBox}
-        className="self-end cursor-pointer bg-primary shadow-lg h-14 w-14 rounded-full flex items-center justify-center"
+        className={`${
+          message ? "bg-primary" : "bg-dark-300"
+        } self-end cursor-pointer  shadow-lg h-14 w-14 rounded-full flex items-center justify-center`}
       >
         <img src={chatIcon} alt="" className="w-7 h-7" />
       </div>
