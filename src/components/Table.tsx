@@ -1,5 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { Posts, Post } from "../types";
+import { useDispatch } from "react-redux";
+import { selectPost } from "../redux/post/postSlice";
 
 type TableProps = {
   posts: Posts;
@@ -7,8 +9,10 @@ type TableProps = {
 
 export default function Table({ posts }: TableProps) {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const viewPost = (post: Post) => {
-    console.log(post);
+    dispatch(selectPost(post));
     navigate(`${post.id}`);
   };
 
