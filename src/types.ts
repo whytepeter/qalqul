@@ -1,7 +1,5 @@
-export type APIResponseType = {
-  success: boolean;
-  message: string;
-  data?: any;
+export type RequestParams = {
+  [key: string]: any;
 };
 
 export type Address = {

@@ -1,7 +1,5 @@
+import { RequestParams } from "@/types";
 import axios, { AxiosResponse } from "axios";
-interface RequestParams {
-  [key: string]: any;
-}
 
 axios.defaults.baseURL = `${import.meta.env.VITE_API_URL}`;
 axios.defaults.headers.post["Content-Type"] = "application/json";

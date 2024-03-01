@@ -20,5 +20,4 @@ const postSlice = createSlice({
 });
 
 export const { selectPost } = postSlice.actions;
-
 export default postSlice.reducer;

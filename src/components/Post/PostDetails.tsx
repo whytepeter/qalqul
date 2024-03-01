@@ -4,6 +4,7 @@ import DisplayCard from "../DisplayCard";
 import { RootState } from "../../redux/store";
 
 export default function PostDetails() {
+  // Use useSelector hook to access selectedPost state from redux store
   const post = useSelector((state: RootState) => state.post.selectedPost);
 
   return (
