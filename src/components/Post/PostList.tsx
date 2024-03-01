@@ -45,16 +45,13 @@ export default function PostList() {
           <h4 className="font-medium text-dark-900">All Post</h4>
           {loading && <Loader />}
         </div>
-
         <Table posts={posts} />
 
-        {posts?.length && (
-          <Pagination
-            setCurrentPage={setCurrentPage}
-            currentPage={currentPage}
-            totalPages={totalPages}
-          />
-        )}
+        <Pagination
+          setCurrentPage={setCurrentPage}
+          currentPage={currentPage}
+          totalPages={totalPages}
+        />
       </div>
     </>
   );
