@@ -6,7 +6,7 @@ interface RequestParams {
 axios.defaults.baseURL = `${import.meta.env.VITE_API_URL}`;
 axios.defaults.headers.post["Content-Type"] = "application/json";
 
-const http = async <T>(
+const http = async (
   method: "GET" | "POST" | "PUT" | "DELETE",
   data?: any,
   params?: RequestParams

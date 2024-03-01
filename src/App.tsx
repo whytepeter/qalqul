@@ -1,5 +1,4 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import NotFoundPage from "./components/NotFoundPage.tsx";
 import Layout from "@/components/Layout.tsx";
 import PostList from "@/components/Post/PostList.tsx";
 import PostDetails from "@/components/Post/PostDetails.tsx";

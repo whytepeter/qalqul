@@ -22,7 +22,7 @@ export default function PostList() {
           _page: currentPage,
           _limit: pageSize,
         };
-        const res = await http<Posts>("GET", undefined, params);
+        const res = await http("GET", undefined, params);
 
         setTotalPages(Math.ceil(res.headers["x-total-count"] / pageSize));
         if (res.data) {
